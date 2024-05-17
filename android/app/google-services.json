@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29580101553",
+    "project_id": "uz-connect",
+    "storage_bucket": "uz-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29580101553:android:a42b6784cef1f7abc61f90",
+        "android_client_info": {
+          "package_name": "com.noel.firefriday"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUCTI4gtEG5dE58T69ReMjvHvKSdKimtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
