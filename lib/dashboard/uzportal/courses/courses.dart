@@ -1,28 +1,33 @@
+import 'package:firefriday/auth/login.dart';
+import 'package:firefriday/business_logic/auth/logout.dart';
+import 'package:firefriday/business_logic/events/create_event.dart';
+import 'package:firefriday/constants/colors.dart';
 import 'package:firefriday/constants/comingSoon.dart';
 import 'package:firefriday/constants/event_item.dart';
+import 'package:firefriday/constants/greeting.dart';
 import 'package:firefriday/constants/iconButtonRow.dart';
+import 'package:firefriday/constants/selectedItemsList.dart';
 import 'package:firefriday/dashboard/pages/events/buySell.dart';
 import 'package:firefriday/dashboard/pages/events/create_event.dart';
-import 'package:firefriday/dashboard/uzportal/courses/courses.dart';
 import 'package:flutter/material.dart';
 import 'package:routerino/routerino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../business_logic/events/create_event.dart';
-import '../../constants/colors.dart';
-
-class EventsPage extends StatefulWidget {
+class CoursesPage extends StatefulWidget {
   @override
-  State<EventsPage> createState() => _EventsPageState();
+  State<CoursesPage> createState() => _CoursesPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
-  var eventCategories = [
-    'Java Programming',
-    'Web Development',
-    'Computer Security',
-    'Networking',
+class _CoursesPageState extends State<CoursesPage> {
+  var coursesData = [];
+  var departmentCategories = [
+    //departments
+    'All',
+    'Computer Science',
+    'Information Technology',
+    'Software Engineering',
+    'Computer Engineering',
   ];
   List<Map<String, dynamic>> events = [];
 
@@ -70,7 +75,6 @@ class _EventsPageState extends State<EventsPage> {
         "text": "Courses and Timetabling",
         "onPressed": () {
           // Implement your "Add to Cart" functionality here
-          context.push(() => CoursesPage());
         },
       },
       {
@@ -118,6 +122,27 @@ class _EventsPageState extends State<EventsPage> {
       },
     ];
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Courses",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              UniconsLine.sign_out_alt,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              signOut()
+                  .then((value) => context.pushRoot(() => const LoginPage()));
+            },
+          ),
+        ],
+        centerTitle: true,
+      ),
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
@@ -128,9 +153,9 @@ class _EventsPageState extends State<EventsPage> {
                 height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: eventCategories.length,
+                  itemCount: departmentCategories.length,
                   itemBuilder: (context, index) {
-                    var selectedCategory = eventCategories[index];
+                    var selectedCategory = departmentCategories[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton.icon(
@@ -138,7 +163,7 @@ class _EventsPageState extends State<EventsPage> {
                           shape: const StadiumBorder(),
                         ),
                         onPressed: () {
-                          // selectedCategory = eventCategories[index];
+                          // selectedCategory = departmentCategories[index];
                           // filterEvents(selectedCategory);
                         },
                         icon: const Icon(
@@ -160,14 +185,14 @@ class _EventsPageState extends State<EventsPage> {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8.0, vertical: 6.0),
-                  child: IconButtonRow(
-                    icon: coursesData[index]['icon'],
+                  child: SelectedItemList(
                     text: coursesData[index]['text'],
                     onPressed: () {
                       // Your on-click functionality here
-                      coursesData[index]['onPressed']();
                     },
-                    trailingWidget: const Icon(Icons.arrow_forward_ios),
+                    onCheckboxChanged: (value) {
+                      // Your on-change functionality here
+                    },
                   ),
                 );
               },
@@ -177,45 +202,47 @@ class _EventsPageState extends State<EventsPage> {
           ),
         ],
       ),
-      floatingActionButton: Stack(
-        children: [
-          Positioned(
-            bottom: 20.0, // Adjust for desired bottom spacing
-            right: 5.0, // Adjust for desired right spacing
-            child: ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-              ),
-              onPressed: () {
-                context.push(() => const ComingSoonPage());
-              },
-              icon:
-                  const Icon(UniconsLine.file_upload_alt, color: primaryColor),
-              label: const Text(
-                'Assignments',
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      floatingActionButton: Visibility(
+        visible: true,
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 20.0, // Adjust for desired bottom spacing
+              right: 5.0, // Adjust for desired right spacing
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                ),
+                onPressed: () {
+                  context.push(() => const ComingSoonPage());
+                },
+                icon: const Icon(UniconsLine.table, color: primaryColor),
+                label: const Text(
+                  'Auto Create TimeTable',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-          // Positioned(
-          //   bottom: 20.0, // Adjust for desired bottom spacing
-          //   right: 5.0, // Adjust for desired right spacing
-          //   child: ElevatedButton.icon(
-          //     style: ElevatedButton.styleFrom(
-          //       backgroundColor: Colors.transparent,
-          //       shape: const StadiumBorder(),
-          //     ),
-          //     onPressed: () => context.push(() => CreateEventPage()),
-          //     icon: const Icon(UniconsLine.edit_alt, color: primaryColor),
-          //     label: const Text(
-          //       'Manage Event',
-          //       style:
-          //           TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          //     ),
-          //   ),
-          // ),
-        ],
+            // Positioned(
+            //   bottom: 20.0, // Adjust for desired bottom spacing
+            //   right: 5.0, // Adjust for desired right spacing
+            //   child: ElevatedButton.icon(
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: Colors.transparent,
+            //       shape: const StadiumBorder(),
+            //     ),
+            //     onPressed: () => context.push(() => CreateEventPage()),
+            //     icon: const Icon(UniconsLine.edit_alt, color: primaryColor),
+            //     label: const Text(
+            //       'Manage Event',
+            //       style:
+            //           TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }

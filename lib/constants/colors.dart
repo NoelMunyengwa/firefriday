@@ -5,3 +5,4 @@ final Color buttonColor = Colors.purple;
 
 const Color primaryColor = Color.fromARGB(255, 111, 212, 207);
 const Color secondaryColor = Color.fromRGBO(224, 224, 224, 0);
+const Color blueGrey = const Color(0xFF607D8B);

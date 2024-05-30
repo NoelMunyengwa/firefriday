@@ -1,6 +1,7 @@
 import 'package:firefriday/business_logic/events/create_event.dart';
 import 'package:firefriday/constants/chat_post_item.dart';
 import 'package:firefriday/constants/colors.dart';
+import 'package:firefriday/constants/comingSoon.dart';
 import 'package:firefriday/constants/iconButtonRow.dart';
 import 'package:firefriday/dashboard/pages/events/create_new_post.dart';
 import 'package:flutter/material.dart';
@@ -16,54 +17,6 @@ class ChatConnectPage extends StatefulWidget {
 class _ChatConnectPageState extends State<ChatConnectPage> {
   List<Map<String, dynamic>> posts = [];
   List<int> likedPosts = [];
-
-  List<Map<String, dynamic>> paymentsData = [
-    {
-      "icon": UniconsLine.user_plus,
-      "text": "Manage Users",
-      "onPressed": () {
-        // Implement your "Add to Cart" functionality here
-      },
-    },
-    {
-      "icon": Icons.monetization_on_outlined,
-      "text": "Ecocash Payments",
-      "onPressed": () {
-        // Implement your "Add to Cart" functionality here
-      },
-    },
-    {
-      "icon": UniconsLine.credit_card,
-      "text": "Paynow Payments",
-      "onPressed": () {
-        // Implement your "Add to Favorites" functionality here
-      },
-    },
-    {
-      "icon": UniconsLine.file_question_alt,
-      "text": "Quotation",
-      "onPressed": () {
-        // Implement your "Share" functionality here
-      },
-      "trailingWidget": const Icon(Icons.more_horiz),
-    },
-    {
-      "icon": UniconsLine.invoice,
-      "text": "Invoice",
-      "onPressed": () {
-        // Implement your "Share" functionality here
-      },
-      "trailingWidget": const Icon(Icons.more_horiz),
-    },
-    {
-      "icon": UniconsLine.file_alt,
-      "text": "Statement",
-      "onPressed": () {
-        // Implement your "Share" functionality here
-      },
-      "trailingWidget": const Icon(Icons.more_horiz),
-    },
-  ];
 
   //Order posts  by most likes
   // void hotStudents(int index) {
@@ -98,6 +51,58 @@ class _ChatConnectPageState extends State<ChatConnectPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> paymentsData = [
+      {
+        "icon": UniconsLine.user_plus,
+        "text": "Manage Users",
+        "onPressed": () {
+          // Implement your "Add to Cart" functionality here
+        },
+      },
+      {
+        "icon": Icons.monetization_on_outlined,
+        "text": "Ecocash Payments",
+        "onPressed": () {
+          // Implement your "Add to Cart" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+      },
+      {
+        "icon": UniconsLine.credit_card,
+        "text": "Paynow Payments",
+        "onPressed": () {
+          // Implement your "Add to Favorites" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+      },
+      {
+        "icon": UniconsLine.file_question_alt,
+        "text": "Quotation",
+        "onPressed": () {
+          // Implement your "Share" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+        "trailingWidget": const Icon(Icons.more_horiz),
+      },
+      {
+        "icon": UniconsLine.invoice,
+        "text": "Invoice",
+        "onPressed": () {
+          // Implement your "Share" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+        "trailingWidget": const Icon(Icons.more_horiz),
+      },
+      {
+        "icon": UniconsLine.file_alt,
+        "text": "Statement",
+        "onPressed": () {
+          // Implement your "Share" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+        "trailingWidget": const Icon(Icons.more_horiz),
+      },
+    ];
     return Scaffold(
       body: ListView.builder(
         itemCount: paymentsData
@@ -129,9 +134,7 @@ class _ChatConnectPageState extends State<ChatConnectPage> {
                 shape: StadiumBorder(),
               ),
               onPressed: () {
-                if (prefEmail.isNotEmpty) {
-                  context.push(() => CreatePostPage());
-                } else {}
+                context.push(() => const ComingSoonPage());
               },
               icon: const Icon(
                 UniconsLine.graduation_cap,

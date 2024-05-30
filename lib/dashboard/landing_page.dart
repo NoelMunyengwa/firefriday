@@ -1,6 +1,8 @@
 import 'package:firefriday/auth/login.dart';
 import 'package:firefriday/business_logic/auth/logout.dart';
 import 'package:firefriday/constants/CustomCircleAvatar.dart';
+import 'package:firefriday/constants/comingSoon.dart';
+import 'package:firefriday/constants/greeting.dart';
 import 'package:firefriday/dashboard/pages/buy_sell.dart';
 import 'package:firefriday/dashboard/pages/chat_connect.dart';
 import 'package:firefriday/dashboard/pages/events.dart';
@@ -17,17 +19,12 @@ class LandingPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            // leading: const Padding(
-            //   padding: EdgeInsets.only(left: 5.0),
-            //   child: Text(
-            //     "Hi, Noel!",
-            //     style: TextStyle(
-            //       fontSize: 18,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
-            title: const Text('UZ Portal'),
+            title: Text(
+              getGreeting("Noel"),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             actions: [
               IconButton(
                 icon: const Icon(
@@ -35,8 +32,7 @@ class LandingPage extends StatelessWidget {
                   color: Color.fromARGB(255, 1, 17, 44),
                 ),
                 onPressed: () {
-                  signOut().then(
-                      (value) => context.pushRoot(() => const LoginPage()));
+                  context.push(() => const ComingSoonPage());
                 },
               ),
               IconButton(
@@ -50,7 +46,7 @@ class LandingPage extends StatelessWidget {
                 },
               ),
             ],
-            centerTitle: true,
+            // centerTitle: true,
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(UniconsLine.home_alt), text: "Home"),

@@ -38,8 +38,7 @@ class _IconButtonRowState extends State<IconButtonRow> {
       },
       style: TextButton.styleFrom(
         // maximumSize: const Size(double.infinity, 200.0),
-        backgroundColor:
-            _isPressed ? Colors.blue.shade700 : Colors.blueGrey.shade600,
+        backgroundColor: _isPressed ? Colors.blue.shade700 : blueGrey,
         padding: const EdgeInsets.all(16.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),

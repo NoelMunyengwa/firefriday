@@ -1,5 +1,6 @@
 import 'package:firefriday/business_logic/events/create_event.dart';
 import 'package:firefriday/constants/colors.dart';
+import 'package:firefriday/constants/comingSoon.dart';
 import 'package:firefriday/constants/iconButtonRow.dart';
 import 'package:firefriday/constants/product_details.dart';
 import 'package:firefriday/dashboard/pages/events/buySell.dart';
@@ -16,53 +17,11 @@ class BuyAndSellPage extends StatefulWidget {
 }
 
 class _BuyAndSellPageState extends State<BuyAndSellPage> {
-  List<Map<String, dynamic>> examsData = [
-    {
-      "icon": UniconsLine.table,
-      "text": "Exam Timetable",
-      "onPressed": () {
-        // Implement your "Add to Cart" functionality here
-      },
-    },
-    {
-      "icon": UniconsLine.file_question_alt,
-      "text": "Results",
-      "onPressed": () {
-        // Implement your "Add to Favorites" functionality here
-      },
-    },
-    // {
-    //   "icon": UniconsLine.file_question_alt,
-    //   "text": "Quotation",
-    //   "onPressed": () {
-    //     // Implement your "Share" functionality here
-    //   },
-    //   "trailingWidget": const Icon(Icons.more_horiz),
-    // },
-    // {
-    //   "icon": UniconsLine.invoice,
-    //   "text": "Invoice",
-    //   "onPressed": () {
-    //     // Implement your "Share" functionality here
-    //   },
-    //   "trailingWidget": const Icon(Icons.more_horiz),
-    // },
-    // {
-    //   "icon": UniconsLine.file_alt,
-    //   "text": "Statement",
-    //   "onPressed": () {
-    //     // Implement your "Share" functionality here
-    //   },
-    //   "trailingWidget": const Icon(Icons.more_horiz),
-    // },
-  ];
   var categories = [
-    'Houses',
-    'Cars',
-    'Electronics',
-    'Furniture',
-    'Clothes',
-    'Other'
+    'First Year',
+    'Second Year',
+    'Third Year',
+    'Fourth Year',
   ];
   List<Map<String, dynamic>> buyAndSell = [];
 
@@ -101,6 +60,24 @@ class _BuyAndSellPageState extends State<BuyAndSellPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> examsData = [
+      {
+        "icon": UniconsLine.table,
+        "text": "Exam Timetable",
+        "onPressed": () {
+          // Implement your "Add to Cart" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+      },
+      {
+        "icon": UniconsLine.file_question_alt,
+        "text": "Results",
+        "onPressed": () {
+          // Implement your "Add to Favorites" functionality here
+          context.push(() => const ComingSoonPage());
+        },
+      },
+    ];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -108,7 +85,7 @@ class _BuyAndSellPageState extends State<BuyAndSellPage> {
             delegate: MySliverPersistentHeaderDelegate(
               // Your scrollable row content here
               child: Container(
-                color: inputColor.withOpacity(0.1),
+                color: secondaryColor,
                 height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -125,7 +102,7 @@ class _BuyAndSellPageState extends State<BuyAndSellPage> {
                           // filterBuyAndSell(selectedCategory);
                         },
                         icon: const Icon(
-                          UniconsLine.shopping_bag,
+                          UniconsLine.history,
                           color: primaryColor,
                         ),
                         label: Text(selectedCategory),
@@ -171,9 +148,7 @@ class _BuyAndSellPageState extends State<BuyAndSellPage> {
                 shape: const StadiumBorder(),
               ),
               onPressed: () {
-                if (prefEmail.isNotEmpty) {
-                  context.push(() => CreateSellPage());
-                } else {}
+                context.push(() => const ComingSoonPage());
               },
               icon: const Icon(UniconsLine.analytics, color: primaryColor),
               label: const Text(

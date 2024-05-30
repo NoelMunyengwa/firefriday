@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
-              fillColor: inputColor,
+              fillColor: blueGrey.withOpacity(0.5),
               filled: true,
               prefixIcon: const Icon(Icons.email)),
         ),
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),
-            fillColor: inputColor,
+            fillColor: blueGrey.withOpacity(0.5),
             filled: true,
             prefixIcon: const Icon(Icons.lock),
           ),
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: buttonColor,
+            backgroundColor: blueGrey,
           ),
           child: const Text(
             "Login",
@@ -187,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
               border: Border.all(
-                color: Colors.purple,
+                color: blueGrey,
               ),
               boxShadow: [
                 BoxShadow(
@@ -257,7 +257,7 @@ class _LoginPageState extends State<LoginPage> {
                     "DISCOVER UZ SERVICES",
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.purple,
+                      color: blueGrey,
                     ),
                   ),
                 ],
@@ -276,7 +276,7 @@ class _LoginPageState extends State<LoginPage> {
       },
       child: const Text(
         "Forgot password?",
-        style: TextStyle(color: Colors.purple),
+        style: TextStyle(color: Colors.red),
       ),
     );
   }
