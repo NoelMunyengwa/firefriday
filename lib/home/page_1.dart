@@ -7,11 +7,11 @@ class PageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OnboardModel(
-        assetName: 'assets/logo/connect.jpg',
+        assetName: 'assets/logo/uzlogo.png',
         width: 350,
         height: 350,
-        title: 'Welcome to UZ Connect ',
+        title: 'Welcome to UZ Student Portal ',
         subtitle:
-            'Hookup with hot varsity students and get the best of your campus life!');
+            'Get access to all the information you need to succeed in your academic journey.');
   }
 }

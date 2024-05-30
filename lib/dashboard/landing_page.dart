@@ -17,11 +17,28 @@ class LandingPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            leading: CustomeCirleAvatar(
-              imageUrl: 'assets/logo/firefriday.jpg',
-            ),
-            title: const Text('UZ Connect'),
+            // leading: const Padding(
+            //   padding: EdgeInsets.only(left: 5.0),
+            //   child: Text(
+            //     "Hi, Noel!",
+            //     style: TextStyle(
+            //       fontSize: 18,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+            title: const Text('UZ Portal'),
             actions: [
+              IconButton(
+                icon: const Icon(
+                  UniconsLine.bell,
+                  color: Color.fromARGB(255, 1, 17, 44),
+                ),
+                onPressed: () {
+                  signOut().then(
+                      (value) => context.pushRoot(() => const LoginPage()));
+                },
+              ),
               IconButton(
                 icon: const Icon(
                   UniconsLine.sign_out_alt,
@@ -36,9 +53,11 @@ class LandingPage extends StatelessWidget {
             centerTitle: true,
             bottom: const TabBar(
               tabs: [
-                Tab(icon: Icon(UniconsLine.comment_heart)),
-                Tab(icon: Icon(UniconsLine.location_arrow)),
-                Tab(icon: Icon(UniconsLine.shopping_cart)),
+                Tab(icon: Icon(UniconsLine.home_alt), text: "Home"),
+                Tab(icon: Icon(UniconsLine.book_reader), text: "Courses"),
+                Tab(
+                    icon: Icon(UniconsLine.file_question_alt),
+                    text: "Exams/Results"),
               ],
             ),
           ),

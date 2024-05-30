@@ -10,8 +10,8 @@ class PageThree extends StatelessWidget {
         assetName: 'assets/logo/rent.jpg',
         width: 400,
         height: 360,
-        title: 'Rent, Buy & Sell',
+        title: 'Accommodation and Tuition Services',
         subtitle:
-            'Find/Provide off campus accommodation. Buy or Advetise your stuff on campus and connect with students.');
+            'Get access to accommodation and tuition services to make your stay in UZ comfortable.');
   }
 }

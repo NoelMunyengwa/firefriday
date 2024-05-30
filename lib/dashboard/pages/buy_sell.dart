@@ -1,5 +1,6 @@
 import 'package:firefriday/business_logic/events/create_event.dart';
 import 'package:firefriday/constants/colors.dart';
+import 'package:firefriday/constants/iconButtonRow.dart';
 import 'package:firefriday/constants/product_details.dart';
 import 'package:firefriday/dashboard/pages/events/buySell.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,46 @@ class BuyAndSellPage extends StatefulWidget {
 }
 
 class _BuyAndSellPageState extends State<BuyAndSellPage> {
+  List<Map<String, dynamic>> examsData = [
+    {
+      "icon": UniconsLine.table,
+      "text": "Exam Timetable",
+      "onPressed": () {
+        // Implement your "Add to Cart" functionality here
+      },
+    },
+    {
+      "icon": UniconsLine.file_question_alt,
+      "text": "Results",
+      "onPressed": () {
+        // Implement your "Add to Favorites" functionality here
+      },
+    },
+    // {
+    //   "icon": UniconsLine.file_question_alt,
+    //   "text": "Quotation",
+    //   "onPressed": () {
+    //     // Implement your "Share" functionality here
+    //   },
+    //   "trailingWidget": const Icon(Icons.more_horiz),
+    // },
+    // {
+    //   "icon": UniconsLine.invoice,
+    //   "text": "Invoice",
+    //   "onPressed": () {
+    //     // Implement your "Share" functionality here
+    //   },
+    //   "trailingWidget": const Icon(Icons.more_horiz),
+    // },
+    // {
+    //   "icon": UniconsLine.file_alt,
+    //   "text": "Statement",
+    //   "onPressed": () {
+    //     // Implement your "Share" functionality here
+    //   },
+    //   "trailingWidget": const Icon(Icons.more_horiz),
+    // },
+  ];
   var categories = [
     'Houses',
     'Cars',
@@ -100,18 +141,21 @@ class _BuyAndSellPageState extends State<BuyAndSellPage> {
               (context, index) {
                 // Generate a random color for each container
                 final color = Color((index * 0x11111111) % 0xFFFFFFFF);
-                return ProductDetailsContainer(
-                  imageUrl: buyAndSell[index]['image'],
-                  name: buyAndSell[index]['name'],
-                  location: buyAndSell[index]['location'],
-                  description: buyAndSell[index]['details'],
-                  price: buyAndSell[index]['price'],
-                  phoneNumber: buyAndSell[index]['phone'],
-                  email: buyAndSell[index]['owner'],
-                  id: buyAndSell[index]['id'].toString(),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0, vertical: 6.0),
+                  child: IconButtonRow(
+                    icon: examsData[index]['icon'],
+                    text: examsData[index]['text'],
+                    onPressed: () {
+                      // Your on-click functionality here
+                      examsData[index]['onPressed']();
+                    },
+                    trailingWidget: const Icon(Icons.arrow_forward_ios),
+                  ),
                 );
               },
-              childCount: buyAndSell
+              childCount: examsData
                   .length, // Replace with the actual number of containers you want to display
             ),
           ),
@@ -131,9 +175,9 @@ class _BuyAndSellPageState extends State<BuyAndSellPage> {
                   context.push(() => CreateSellPage());
                 } else {}
               },
-              icon: const Icon(UniconsLine.shopping_bag, color: primaryColor),
+              icon: const Icon(UniconsLine.analytics, color: primaryColor),
               label: const Text(
-                'Sell/ rent Item',
+                'Metrics',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),

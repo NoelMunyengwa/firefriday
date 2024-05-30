@@ -1,4 +1,5 @@
 import 'package:firefriday/constants/event_item.dart';
+import 'package:firefriday/constants/iconButtonRow.dart';
 import 'package:firefriday/dashboard/pages/events/buySell.dart';
 import 'package:firefriday/dashboard/pages/events/create_event.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,54 @@ class EventsPage extends StatefulWidget {
 }
 
 class _EventsPageState extends State<EventsPage> {
+  List<Map<String, dynamic>> coursesData = [
+    {
+      "icon": UniconsLine.book_open,
+      "text": "Courses and Timetabling",
+      "onPressed": () {
+        // Implement your "Add to Cart" functionality here
+      },
+    },
+    {
+      "icon": UniconsLine.check_circle,
+      "text": "Course Confirmation",
+      "onPressed": () {
+        // Implement your "Add to Favorites" functionality here
+      },
+    },
+    {
+      "icon": UniconsLine.file_question_alt,
+      "text": "Courses On Offer",
+      "onPressed": () {
+        // Implement your "Share" functionality here
+      },
+      "trailingWidget": const Icon(Icons.more_horiz),
+    },
+    {
+      "icon": UniconsLine.save,
+      "text": "Course Registration",
+      "onPressed": () {
+        // Implement your "Share" functionality here
+      },
+      "trailingWidget": const Icon(Icons.more_horiz),
+    },
+    {
+      "icon": UniconsLine.history_alt,
+      "text": "Registration History",
+      "onPressed": () {
+        // Implement your "Share" functionality here
+      },
+      "trailingWidget": const Icon(Icons.more_horiz),
+    },
+    {
+      "icon": UniconsLine.table,
+      "text": "Timetable",
+      "onPressed": () {
+        // Implement your "Share" functionality here
+      },
+      "trailingWidget": const Icon(Icons.more_horiz),
+    },
+  ];
   var eventCategories = [
     'Concerts',
     'Conferences',
@@ -103,18 +152,22 @@ class _EventsPageState extends State<EventsPage> {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 // Generate a random color for each container
-                return CenteredEventNameContainer(
-                  name: events[index]['name'],
-                  imageUrl: events[index]['image'],
-                  location: events[index]['location'],
-                  time: events[index]['time'],
-                  fee: events[index]['fee'],
-                  email: events[index]['owner'],
-                  id: events[index]['id'].toString(),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0, vertical: 6.0),
+                  child: IconButtonRow(
+                    icon: coursesData[index]['icon'],
+                    text: coursesData[index]['text'],
+                    onPressed: () {
+                      // Your on-click functionality here
+                      coursesData[index]['onPressed']();
+                    },
+                    trailingWidget: const Icon(Icons.arrow_forward_ios),
+                  ),
                 );
               },
               childCount:
-                  events.length, // Replace with the actual number of items
+                  coursesData.length, // Replace with the actual number of items
             ),
           ),
         ],
@@ -133,9 +186,10 @@ class _EventsPageState extends State<EventsPage> {
                   context.push(() => CreateEventPage());
                 } else {}
               },
-              icon: const Icon(UniconsLine.schedule, color: primaryColor),
+              icon:
+                  const Icon(UniconsLine.file_upload_alt, color: primaryColor),
               label: const Text(
-                'Create Event',
+                'Assignments',
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),

@@ -7,11 +7,10 @@ class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OnboardModel(
-        assetName: 'assets/logo/event.jpg',
+        assetName: 'assets/logo/uzlogo.png',
         width: 400,
         height: 360,
-        title: 'On & off-campus event updates!',
-        subtitle:
-            ' Get the latest updates of events happening on and off-campus. Set reminders and never miss out on any event');
+        title: 'Results and Course updates',
+        subtitle: 'Get updates on your results and course updates on the go.');
   }
 }

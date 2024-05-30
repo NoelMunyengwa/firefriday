@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
             _header(context),
             _inputField(context),
             _forgotPassword(context),
-            _signup(context),
+            // _signup(context),
           ],
         ),
       ),
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
           "Welcome Back",
           style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
-        Text("Enter your UZ Connect credentials"),
+        Text("Enter your UZ Portal credentials"),
       ],
     );
   }
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
           keyboardType: TextInputType.emailAddress,
           controller: emailController,
           decoration: InputDecoration(
-              hintText: "Email",
+              hintText: "Email (john.doe@students.uz.ac.zw)",
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderSide: BorderSide.none),
             fillColor: inputColor,
             filled: true,
-            prefixIcon: const Icon(Icons.password),
+            prefixIcon: const Icon(Icons.lock),
           ),
           obscureText: true,
         ),
@@ -247,14 +247,14 @@ class _LoginPageState extends State<LoginPage> {
                     width: 30.0,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('assets/logo/firefriday.jpg'),
+                          image: AssetImage('assets/logo/uzlogo.png'),
                           fit: BoxFit.cover),
                       shape: BoxShape.circle,
                     ),
                   ),
                   const SizedBox(width: 18),
                   const Text(
-                    "Continue as Guest",
+                    "DISCOVER UZ SERVICES",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.purple,
