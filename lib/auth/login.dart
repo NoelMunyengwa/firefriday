@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firefriday/auth/forgot_password.dart';
 import 'package:firefriday/auth/register.dart';
 import 'package:firefriday/business_logic/auth/loginUser.dart';
+import 'package:firefriday/business_logic/auth/uzconnect_auth/uz_login.dart';
 import 'package:firefriday/business_logic/guests/guests.dart';
 import 'package:firefriday/constants/colors.dart';
 import 'package:firefriday/constants/message_dialogs.dart';
@@ -133,24 +134,27 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               );
               dialog.show();
-              loginUser(
-                email: emailController.text,
-                password: passwordController.text,
+              authenticateUser(
+                emailController.text,
+                passwordController.text,
               ).then((value) => {
                     dialog.dismiss(),
-                    if (value!.user!.email!.isNotEmpty)
+                    print("LOGIN RESPONSE: $value"),
+                    if (value.isNotEmpty)
                       {
-                        print("EMAIL: ${value.user!.email.toString()}"),
+                        // save email and access_token in shared prefs
                         context.pushRoot(() => LandingPage()),
                       }
                     else
-                      {error.show()}
+                      {
+                        print('ERROR'),
+                      }
                   });
 
-              print('RESPONSE ');
+              // print('RESPONSE ');
 
-              final FirebaseAuth auth = FirebaseAuth.instance;
-              User? user = auth.currentUser;
+              // final FirebaseAuth auth = FirebaseAuth.instance;
+              // User? user = auth.currentUser;
             } else {
               //return error
 

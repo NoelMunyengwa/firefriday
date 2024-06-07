@@ -7,7 +7,7 @@ class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OnboardModel(
-        assetName: 'assets/logo/uzlogo.png',
+        assetName: 'assets/logo/courses.jpg',
         width: 400,
         height: 360,
         title: 'Results and Course updates',

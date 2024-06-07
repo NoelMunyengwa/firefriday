@@ -4,6 +4,7 @@ import 'package:firefriday/constants/iconButtonRow.dart';
 import 'package:firefriday/dashboard/pages/events/buySell.dart';
 import 'package:firefriday/dashboard/pages/events/create_event.dart';
 import 'package:firefriday/dashboard/uzportal/courses/courses.dart';
+import 'package:firefriday/dashboard/uzportal/courses/timetable.dart';
 import 'package:flutter/material.dart';
 import 'package:routerino/routerino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -113,6 +114,7 @@ class _EventsPageState extends State<EventsPage> {
         "text": "Timetable",
         "onPressed": () {
           // Implement your "Share" functionality here
+          context.push(() => TimetablePage());
         },
         "trailingWidget": const Icon(Icons.more_horiz),
       },
